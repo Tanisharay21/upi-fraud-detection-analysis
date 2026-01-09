@@ -3,7 +3,7 @@
 Project Overview
 A data-driven fraud detection system that identifies fraudulent UPI transactions using pattern analysis and business rules. The system combines data exploration, fraud pattern discovery, and automated risk scoring to prevent financial losses.
 
-## 🔍 Key Findings from 80,000 Transactions Analysis
+## Key Findings from 80,000 Transactions Analysis
 
 ### **Fraud Distribution:**
 - **Total transactions**: 80,000
@@ -18,12 +18,12 @@ A data-driven fraud detection system that identifies fraudulent UPI transactions
 - **Business hours vs. after-hours**: Clear fraud pattern differences
 
 ### **Amount Analysis - The Strongest Fraud Indicator:**
-| Transaction Size | Fraud Rate | Risk Level |
-|------------------|------------|------------|
-| Small (<₹1,000) | 0% | Low |
-| Medium (₹1,000-5,000) | 5.6% | Extreme |
-| Large (₹5,000-15,000) | 62.1% | Extreme |
-| Very Large (15k+) | 71% | Extreme |
+| Transaction Size      | Fraud Rate | Risk Level |
+|-----------------------|------------|------------|
+| Small (<₹1,000)       | 0%         | Low        |
+| Medium (₹1,000-5,000) | 5.6%       | Extreme    |
+| Large (₹5,000-15,000) | 62.1%      | Extreme    |
+| Very Large (15k+)     | 71%        | Extreme    |
 
 ### **Category Analysis:**
 - All merchant types show similar fraud rates (~10%)
@@ -39,13 +39,12 @@ A data-driven fraud detection system that identifies fraudulent UPI transactions
 - **Explainable Decisions**: Clear reasons provided for each risk assessment
 
 ### **Automated Actions:**
-| Risk Score | Action | Description |
-
-≥50	| ESCALATE TO FRAUD TEAM	                    | Immediate investigation required
-43-49	| STRONG VERIFICATION (OTP + Biometric)    | Enhanced authentication required
-20-42	| FLAG FOR REVIEW	                         | Manual review needed
-<20	| AUTO APPROVE	                              
-| Low risk, instant approval
+| Risk Score |                 Action                |          Description              |
+|------------|---------------------------------------|--------------------------------=--|
+| ≥50	       | ESCALATE TO FRAUD TEAM	               | Immediate investigation required  |
+| 43-49	     | STRONG VERIFICATION (OTP + Biometric) | Enhanced authentication required  |
+| 20-42	     | FLAG FOR REVIEW	                     | Manual review needed              |
+| <20	       | AUTO APPROVE	                         | Low risk, instant approval        |
 
 ### **High-Risk Patterns Detected:**
 1. **Night + Large Amount**: 78% fraud rate
@@ -54,7 +53,8 @@ A data-driven fraud detection system that identifies fraudulent UPI transactions
 4. **Failed Transaction Status**: 54.2% fraud rate
 
 
-Tested  Different Scenarios:**
+## Tested  Different Scenarios:**
+
 - Tested different transaction patterns
 - Shows all risk thresholds in action
 - Demonstrates real-world fraud scenarios
