@@ -40,7 +40,7 @@ A data-driven fraud detection system that identifies fraudulent UPI transactions
 
 ### **Automated Actions:**
 | Risk Score |                 Action                |          Description              |
-|------------|---------------------------------------|--------------------------------=--|
+|------------|---------------------------------------|-----------------------------------|
 | ≥50	       | ESCALATE TO FRAUD TEAM	               | Immediate investigation required  |
 | 43-49	     | STRONG VERIFICATION (OTP + Biometric) | Enhanced authentication required  |
 | 20-42	     | FLAG FOR REVIEW	                     | Manual review needed              |
