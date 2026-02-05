@@ -1,85 +1,139 @@
-# Fraud Detection System - UPI Transaction Analysis
+# UPI Fraud Detection System – Transaction Risk Analysis (Python)
 
-Project Overview
-A data-driven fraud detection system that identifies fraudulent UPI transactions using pattern analysis and business rules. The system combines data exploration, fraud pattern discovery, and automated risk scoring to prevent financial losses.
+## Project Overview
+This project builds a **rule-based fraud detection and risk scoring system** using analysis of **80,000 UPI transactions**.
 
-## Key Findings from 80,000 Transactions Analysis
+Instead of jumping straight to machine learning, the focus is on:
+- Understanding **fraud behavior**
+- Identifying **high-risk transaction patterns**
+- Translating insights into **clear business rules**
 
-### **Fraud Distribution:**
-- **Total transactions**: 80,000
-- **Fraud rate**: 10.05% (8,040 fraud transactions)
-- **Status analysis**: 96% transactions successful, 4% failed
-- **Critical insight**: Failed transactions strongly correlate with fraud attempts
+This mirrors how real payment systems design fraud controls before (or alongside) ML models.
 
-### **Temporal Patterns:**
-- **Night transactions (1 AM - 5 AM)**: Highest fraud rates
-- **January and April**: Unusually high fraud activity month
-- **Daytime transactions**: Significantly safer
-- **Business hours vs. after-hours**: Clear fraud pattern differences
+---
 
-### **Amount Analysis - The Strongest Fraud Indicator:**
-| Transaction Size      | Fraud Rate | Risk Level |
-|-----------------------|------------|------------|
-| Small (<₹1,000)       | 0%         | Low        |
-| Medium (₹1,000-5,000) | 5.6%       | Extreme    |
-| Large (₹5,000-15,000) | 62.1%      | Extreme    |
-| Very Large (15k+)     | 71%        | Extreme    |
+## Dataset Summary
+- Total transactions: **80,000**
+- Fraudulent transactions: **8,040**
+- Overall fraud rate: **10.05%**
+- Transaction status:
+  - 96% successful
+  - 4% failed
 
-### **Category Analysis:**
-- All merchant types show similar fraud rates (~10%)
-- No single city or bank stands out as particularly risky
-- Fraud is evenly distributed across all categories
-- **Critical Insight**: Transaction amount is the strongest fraud indicator, not merchant type or location
+> The dataset is **synthetic** but designed to simulate realistic UPI transaction behavior.
 
-## ⚙️ System Features
+---
 
-### **Risk Scoring Engine:**
-- **Score Range**: 0-100 (higher = more risky)
-- **Data-Driven Rules**: All thresholds based on actual fraud patterns
-- **Explainable Decisions**: Clear reasons provided for each risk assessment
+## Key Fraud Insights
 
-### **Automated Actions:**
-| Risk Score |                 Action                |          Description              |
-|------------|---------------------------------------|-----------------------------------|
-| ≥50	       | ESCALATE TO FRAUD TEAM	               | Immediate investigation required  |
-| 43-49	     | STRONG VERIFICATION (OTP + Biometric) | Enhanced authentication required  |
-| 20-42	     | FLAG FOR REVIEW	                     | Manual review needed              |
-| <20	       | AUTO APPROVE	                         | Low risk, instant approval        |
+### 1. Transaction Status & Fraud
+- **54% of failed transactions are fraudulent**
+- Failed transactions are not noise — they often indicate fraud attempts being blocked
 
-### **High-Risk Patterns Detected:**
-1. **Night + Large Amount**: 78% fraud rate
-2. **Location Mismatch + >₹3k**: 72.7% fraud rate  
-3. **Weekend Large Transactions**: 67.6% fraud rate
-4. **Failed Transaction Status**: 54.2% fraud rate
+**Business Insight:**  
+Transaction failure itself is a strong fraud signal.
 
+---
 
-## Tested  Different Scenarios:**
+### 2. Temporal Patterns
+- **Highest fraud activity between 1 AM – 5 AM**
+- **January and April** show elevated fraud levels
+- Daytime transactions are significantly safer
 
-- Tested different transaction patterns
-- Shows all risk thresholds in action
-- Demonstrates real-world fraud scenarios
+**Real-world parallel:**  
+Banks apply stricter checks during low-activity hours.
 
-## Business Impact
+---
 
-### **For Financial Institutions:**
-- **Reduced fraud losses** by catching 70%+ fraud patterns automatically
-- **Improved operational efficiency** - focus resources on high-risk cases
-- **Regulatory compliance** with documented risk assessments
+### 3. Amount-Based Risk (Strongest Indicator)
+| Transaction Amount | Fraud Rate |
+|-------------------|-------------|
+| < ₹1,000          | 0%          |
+| ₹1,000 – ₹5,000   | 5.6%        |
+| ₹5,000 – ₹15,000  | 62.1%       |
+| > ₹15,000         | 71.0%       |
 
-### **For Customers:**
-- **Seamless experience** for low-risk transactions
-- **Enhanced security** for suspicious activities
-- **Transparent process** with clear risk explanations
+**Critical Insight:**  
+Fraud is overwhelmingly concentrated in **high-value transactions**.
 
-## 📈 Actionable Recommendations
+---
 
-### **Immediate Actions:**
-1. **Implement amount-based blocking**: Auto-decline transactions >₹5,000 at night
-2. **Enhance location verification**: Flag location mismatches with amounts >₹3,000
-3. **Monitor February closely**: Increase vigilance during high-fraud month
+### 4. Category & Location Analysis
+- Merchant categories show similar fraud rates (~10%)
+- No single city or bank dominates fraud activity
+- Device type and payment method have minimal standalone impact
 
-### **System Improvements:**
-1. **Real-time monitoring**: Flag transactions crossing multiple risk thresholds
-2. **Customer profiling**: Learn normal spending patterns for each user
-3. **Dynamic thresholds**: Adjust based on time, location, and customer history
+**Conclusion:**  
+Fraud depends more on **transaction context + behavior** than surface-level categories.
 
+---
+
+## High-Risk Fraud Patterns Identified
+| Pattern                             | Fraud Rate  |
+|-------------------------------------|-------------|
+| Late-night + Large Amount           | 78%         |
+| Location mismatch + Amount > ₹3,000 | 72.7%       |
+| Weekend large transactions          | 67.6%       |
+| Failed transaction status           | 54.2%       |
+
+These patterns closely resemble **real-world fraud rule engines**.
+
+---
+
+## Risk Scoring System
+
+### Risk Score: 0 – 100
+(Higher score = higher fraud risk)
+
+Scores are calculated using **data-driven rules** derived from observed fraud rates.
+
+### Automated Actions
+| Risk Score | Action                                |
+|------------|---------------------------------------|
+| ≥ 50       | Escalate to fraud team                |
+| 43 – 49    | Strong verification (OTP + biometric) |
+| 20 – 42    | Flag for manual review                |
+| < 20       | Auto-approve                          |
+
+Each decision includes **explainable reasons**, ensuring transparency.
+
+---
+
+## System Features
+- Rule-based fraud detection
+- Explainable risk scoring
+- Behavioral pattern analysis
+- Scenario testing across different transaction types
+- Business-aligned decision thresholds
+
+---
+
+## Business Value
+
+### For Payment Platforms
+- Early detection of high-risk transactions
+- Reduced manual review workload
+- Clear audit trail for compliance and investigations
+
+### For Customers
+- Faster approvals for low-risk transactions
+- Stronger security for suspicious activity
+- Transparent and predictable fraud checks
+
+---
+
+## Tools & Techniques
+- Python (pandas, numpy)
+- Exploratory Data Analysis (EDA)
+- Feature engineering
+- Behavioral pattern detection
+- Rule-based decision systems
+- Risk scoring logic
+
+---
+
+## Key Takeaway
+This project demonstrates **how fraud detection actually starts in industry**:
+not with black-box models, but with **data-driven rules, behavioral insights, and explainable decisions**.
+
+It shows the ability to convert raw transaction data into **practical fraud controls**.
